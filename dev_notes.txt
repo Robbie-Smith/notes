@@ -1,0 +1,7 @@
+Docker
+------
+- docker container ls -a
+  * List containers
+- docker ps -a
+  * List containers
+  * Without the -a it just shows the running one
