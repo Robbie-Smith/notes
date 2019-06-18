@@ -5,3 +5,12 @@ Docker
 - docker ps -a
   * List containers
   * Without the -a it just shows the running one
+- docker container stop <container id>
+  * stop container
+- docker run -d -p PORT:PORT <name of image>
+  * run container
+- docker exec -it <ID> /bin/bash
+  * ssh into running container
+- docker container logs <name of container>
+  * see logs of the container
+
