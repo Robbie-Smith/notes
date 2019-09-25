@@ -9,24 +9,27 @@ Steps to successfully connect:
   3) Install Python3 and Chocolately on windows via the powershell.
     - Follow all the steps in the following link to install Python3 and
       Chocolately (windows package manager)
+    - Disregard installing nano.
     - https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10
   4) Install the awscli via powershell
-    - https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
-  5) Configure an IAM user in AWS
+    - choco install awscli
+  5) Configure an IAM user in AWS (Talk to whoever handles your AWS account)
     - Generate an access key and secret key (don't lose the secret key)
-  6) Run $aws configure from powershell
+  6) Run the command `aws configure` from powershell
+   - If aws isn't in your path, follow this to help debug https://docs.aws.amazon.com/cli/latest/userguide/install-windows.html#awscli-install-windows-path
     - Fill in the prompts with the keys you configured above
   7) Follow the steps in the guide you downloaded in step 2, starting at page
      10
     - "Create a Data Source Name on Windows"
-    - Authentication type shoudl be "Default Credentials", which will use the
-      credentials you created in steps 5 and 6
+    - Select "Authenticate Option"
+      - Authentication type should be "Default Credentials", which will use the
+        credentials you created in steps 5 and 6
   8) Click "Test..." and should have successfully connected to AWS Athena
   9) Open up PowerBI
     - Select Get Data
       - Click More..
         - Select ODBC
           - Select the DSN (Data Source Name) you created in step 7
-    Congratulations you successfully connected!
+  10) Login with the Default Credentials option. You shouldn't have to enter anything.
 
-
+  - Congratulations you successfully connected!

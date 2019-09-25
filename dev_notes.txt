@@ -14,3 +14,16 @@ Docker
 - docker container logs <name of container>
   * see logs of the container
 
+Git
+---
+- Multiple SSH/Git accounts
+  * https://medium.com/@trionkidnapper/ssh-keys-with-multiple-github-accounts-c67db56f191e
+
+
+SCP
+---
+
+* Running scp
+  - scp -i <identity> <local file or directory> <host>:<location>
+    - Don't forget the forward slash for the host file location
+  - scp -r -i glue-mt-rainer.pem nutrien_ingest_glue_etl/* glue@ec2-34-220-58-223.us-west-2.compute.amazonaws.com:/home/glue

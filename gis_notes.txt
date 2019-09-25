@@ -1,0 +1,3 @@
+Convert shp file to json
+--------------------------
+ogr2ogr -f GeoJson shapes.json shapes.shp
