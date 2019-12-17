@@ -1,0 +1,72 @@
+
+`docker build -t pyspark_work_space .`
+
+`docker run --rm -it --mount src="$(pwd)",target=/home/work_space,type=bind pyspark_work_space`
+
+Dockerfile
+#########################################################################
+```Docker
+FROM java:8-jdk-alpine
+ARG PYTHON_VERSION=2.7.15
+ENV PYENV_ROOT "$HOME/.pyenv"
+ENV PATH "$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+COPY requirements-dev.txt $HOME/requirements-dev.txt
+# Install base updates and packages to OS
+RUN apk update && \
+    apk add \
+    curl \
+    bash \
+    zip \
+    git \
+    bzip2-dev \
+    coreutils \
+    dpkg-dev \
+    dpkg \
+    expat-dev \
+    findutils \
+    gcc \
+    gdbm-dev \
+    libc-dev \
+    libffi-dev \
+    libtirpc-dev \
+    linux-headers \
+    make \
+    ncurses-dev \
+    openssl-dev \
+    pax-utils \
+    readline-dev \
+    sqlite-dev \
+    tcl-dev \
+    tk \
+    tk-dev \
+    util-linux-dev \
+    xz-dev \
+    zlib-dev
+
+WORKDIR /$HOME
+SHELL ["/bin/bash", "-c"]
+# Install pyenv, the specified PYTHON_VERSION, and set your python version
+RUN git clone https://github.com/pyenv/pyenv.git ${PYENV_ROOT} \
+    && pyenv install $PYTHON_VERSION \
+    && pyenv global $PYTHON_VERSION \
+    && pyenv rehash \
+    && pip install --no-cache-dir --upgrade pip
+
+# Reason for separating out pyspark from the requirements-dev file
+# is that Docker caches layers and it take a fair amount of time to install
+# pyspark, so if you were to update the requirements-dev.txt file then Docker
+# would also reinstall pyspark. Whereas currently Docker will just used the
+# cached layer
+RUN pip install pyspark
+
+RUN pip install -r requirements-dev.txt
+
+CMD /bin/bash
+```
+#########################################################################
+
+Commands
+- docker rmi $(docker images -f dangling=true -q)
+  - Remove dangling images
+- docker container prune
+  - Prune all stopped containers
