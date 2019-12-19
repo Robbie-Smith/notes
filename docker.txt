@@ -70,7 +70,7 @@ Commands
 - docker build -t pyspark_work_space .
   - Build the image
 - docker run --rm -it --mount src="$(pwd)",target=/home/work_space,type=bind pyspark_work_space
-  - Run the container, mount directory, and remove container when done
+
 - docker rmi $(docker images -f dangling=true -q)
   - Remove dangling images
 - docker container prune
