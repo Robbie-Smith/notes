@@ -27,3 +27,7 @@ SCP
   - scp -i <identity> <local file or directory> <host>:<location>
     - Don't forget the forward slash for the host file location
   - scp -r -i glue-mt-rainer.pem nutrien_ingest_glue_etl/* glue@ec2-34-220-58-223.us-west-2.compute.amazonaws.com:/home/glue
+
+Unzip Files
+----------
+for f in $(ls *.gz) ; do gunzip $f; done
